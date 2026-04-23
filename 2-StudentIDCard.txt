@@ -1,0 +1,172 @@
+Experiment No: 2
+Title: Student ID Card UI using Flutter
+
+Aim:
+To develop a Flutter UI for creating a Student ID card using basic widgets. 
+
+Requirements:
+
+* FlutLab account
+* Internet
+
+Steps:
+
+1. Open https://flutlab.io
+
+2. Click on "New Project"
+
+3. Enter project name: id_card_app
+
+4. Click "Create Project"
+
+5. Go to lib/main.dart
+
+6. Delete existing code
+
+7. Copy and paste the following code:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: IdCard(),
+  ));
+}
+
+class IdCard extends StatelessWidget {
+  const IdCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      body: Center(
+        child: Container(
+          width: 300,
+          height: 500,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              // Header
+              Container(
+                height: 120,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Color(0xFF0D47A1),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.account_balance, color: Colors.white, size: 30),
+                    SizedBox(height: 5),
+                    Text(
+                      "CORPORATE SOLUTIONS",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 25),
+
+              // Profile Image
+              Container(
+                padding: const EdgeInsets.all(3),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF0D47A1),
+                  shape: BoxShape.circle,
+                ),
+                child: const CircleAvatar(
+                  radius: 60,
+                  backgroundImage: NetworkImage(
+                    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              // Name
+              const Text(
+                "RAHUL SHARMA",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF0D47A1),
+                ),
+              ),
+
+              // Role
+              const Text(
+                "Senior Flutter Developer",
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.blueGrey,
+                ),
+              ),
+
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                child: Divider(),
+              ),
+
+              // Info
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35),
+                child: Column(
+                  children: const [
+                    Text("Emp ID: CS-8842"),
+                    Text("Email: rahul@corp.com"),
+                    Text("Phone: +91 9876500001"),
+                    Text("Blood Group: A+"),
+                  ],
+                ),
+              ),
+
+              const Spacer(),
+
+              // Footer
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text(
+                  "www.corporatesolutions.com",
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+8. Click on "Run" button
+
+Output:
+A Student ID card UI will be displayed with name, photo, and details. 
+
+Conclusion:
+In this experiment, a user interface was created using Flutter basic widgets. 

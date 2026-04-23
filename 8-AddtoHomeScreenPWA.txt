@@ -1,0 +1,220 @@
+Experiment No: 8
+Title: Progressive Web App (PWA) using Flutter
+
+Aim:
+To develop a Progressive Web App using web app manifest and enable "Add to Home Screen".
+
+Requirements:
+
+* Flutter SDK
+* VS Code
+* Chrome Browser
+* Node.js
+
+---
+
+### Step 1: Open VS Code Terminal
+
+Press: Ctrl + `
+
+---
+
+### Step 2: Enable Flutter Web
+
+Run in terminal:
+
+flutter config --enable-web
+flutter devices
+
+(Chrome should be listed)
+
+---
+
+### Step 3: Create Project
+
+Run in terminal:
+
+flutter create my_pwa_app
+cd my_pwa_app
+code .
+
+---
+
+### Step 4: Test Run
+
+Run:
+
+flutter run -d chrome
+
+(App will open in browser)
+
+Stop:
+Ctrl + C
+
+---
+
+### Step 5: Edit Manifest File
+
+Open:
+web/manifest.json
+
+Replace with:
+
+{
+"name": "Flutter PWA Demo",
+"short_name": "PWA",
+"start_url": ".",
+"display": "standalone",
+"background_color": "#ffffff",
+"theme_color": "#1976d2",
+"icons": [
+{
+"src": "icons/Icon-192.png",
+"sizes": "192x192",
+"type": "image/png"
+},
+{
+"src": "icons/Icon-512.png",
+"sizes": "512x512",
+"type": "image/png"
+}
+]
+}
+
+Save file
+
+---
+
+### Step 6: Edit index.html
+
+Open:
+web/index.html
+
+Inside <head> add:
+
+<link rel="manifest" href="manifest.json">
+
+Save file
+
+---
+
+### Step 7: Write Flutter Code
+
+Open:
+lib/main.dart
+
+Replace with:
+
+import 'package:flutter/material.dart';
+
+void main() {
+runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+const MyApp({super.key});
+
+@override
+Widget build(BuildContext context) {
+return const MaterialApp(
+debugShowCheckedModeBanner: false,
+home: HomePage(),
+);
+}
+}
+
+class HomePage extends StatefulWidget {
+const HomePage({super.key});
+
+@override
+State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+int count = 0;
+
+void increment() {
+setState(() {
+count++;
+});
+}
+
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text("Flutter PWA"),
+),
+body: Center(
+child: Text(
+"Count: $count",
+style: const TextStyle(fontSize: 24),
+),
+),
+floatingActionButton: FloatingActionButton(
+onPressed: increment,
+child: const Icon(Icons.add),
+),
+);
+}
+}
+
+Save file
+
+---
+
+### Step 8: Build Web App (IMPORTANT)
+
+Run in terminal:
+
+flutter build web
+
+---
+
+### Step 9: Install Server (One Time)
+
+Run:
+
+npm install -g serve
+
+---
+
+### Step 10: Run App using Server
+
+Run:
+
+serve -s build/web
+
+Terminal will show:
+
+http://localhost:3000
+
+---
+
+### Step 11: Open in Chrome
+
+Open browser and go to:
+
+http://localhost:3000
+
+---
+
+### Step 12: Add to Home Screen
+
+Click:
+
+* Install icon in address bar
+  OR
+* 3 dots → "Install App"
+
+---
+
+### Output:
+
+Flutter web app runs and can be installed using "Add to Home Screen" option.
+
+---
+
+### Conclusion:
+
+PWA is successfully implemented using web app manifest and service worker.

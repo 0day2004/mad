@@ -1,0 +1,192 @@
+Experiment No: 11
+Title: Deploy eCommerce PWA on GitHub Pages
+
+Aim:
+To deploy a Progressive Web App (PWA) on GitHub Pages and make it accessible online. 
+
+Requirements:
+
+* Flutter SDK
+* Git installed
+* GitHub account
+* VS Code
+
+---
+
+### Step 1: Open VS Code Terminal
+
+Press: Ctrl + `
+
+---
+
+### Step 2: Create Project
+
+Run:
+
+flutter create ecommerce_pwa
+cd ecommerce_pwa
+code .
+
+---
+
+### Step 3: Enable Web
+
+Run:
+
+flutter config --enable-web
+flutter devices
+
+---
+
+### Step 4: Write Flutter Code
+
+Open:
+lib/main.dart
+
+Replace with:
+
+```dart id="ecomcode"
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ProductPage(),
+    );
+  }
+}
+
+class ProductPage extends StatelessWidget {
+  const ProductPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Ecommerce Store")),
+      body: Column(
+        children: [
+          product("Shoes", "₹2000", Icons.shopping_bag, context),
+          product("Watch", "₹1500", Icons.watch, context),
+          product("Bag", "₹1200", Icons.backpack, context),
+        ],
+      ),
+    );
+  }
+
+  Widget product(String name, String price, IconData icon, BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(10),
+      child: ListTile(
+        leading: Icon(icon),
+        title: Text(name),
+        subtitle: Text(price),
+        trailing: ElevatedButton(
+          child: const Text("Buy"),
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("$name added to cart")),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+```
+
+---
+
+### Step 5: Run App
+
+Run:
+
+flutter run -d chrome
+
+---
+
+### Step 6: Build Web App
+
+Run:
+
+flutter build web
+
+---
+
+### Step 7: Fix for GitHub Pages
+
+Run:
+
+flutter build web --base-href "/ecommerce_pwa/"
+
+---
+
+### Step 8: Initialize Git
+
+Run:
+
+git init
+git add .
+git commit -m "Initial commit"
+
+---
+
+### Step 9: Create GitHub Repository
+
+Go to GitHub
+
+Create new repository
+
+Name:
+ecommerce-pwa
+
+---
+
+### Step 10: Push Code
+
+Run:
+
+git remote add origin https://github.com/your-username/ecommerce-pwa.git
+git branch -M main
+git push -u origin main
+
+---
+
+### Step 11: Enable GitHub Pages
+
+1. Open repository on GitHub
+2. Go to Settings
+3. Click Pages
+4. Select:
+
+   * Source: Deploy from branch
+   * Branch: main
+   * Folder: / (root)
+5. Click Save
+
+---
+
+### Step 12: Open Website
+
+After few seconds, link will be generated:
+
+https://your-username.github.io/ecommerce_pwa/
+
+---
+
+### Output:
+
+The eCommerce PWA is successfully deployed and accessible online. 
+
+---
+
+### Conclusion:
+
+The PWA is successfully deployed on GitHub Pages and can be accessed globally. 

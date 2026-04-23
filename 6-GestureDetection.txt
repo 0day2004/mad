@@ -1,0 +1,122 @@
+Experiment No: 6
+Title: Gesture Detection using Flutter
+
+Aim:
+To apply concepts of gestures using GestureDetector widget in Flutter. 
+
+Requirements:
+
+* FlutLab account
+* Internet
+
+Steps:
+
+1. Open https://flutlab.io
+
+2. Click "New Project"
+
+3. Enter project name: gesture_app
+
+4. Click "Create Project"
+
+5. Open lib/main.dart
+
+6. Delete existing code
+
+7. Paste the below code
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Smart Lock',
+      debugShowCheckedModeBanner: false,
+      home: const SmartLockScreen(),
+    );
+  }
+}
+
+class SmartLockScreen extends StatefulWidget {
+  const SmartLockScreen({Key? key}) : super(key: key);
+
+  @override
+  _SmartLockScreenState createState() => _SmartLockScreenState();
+}
+
+class _SmartLockScreenState extends State<SmartLockScreen> {
+  bool isLocked = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Smart Door Lock"),
+        backgroundColor: isLocked ? Colors.red : Colors.green,
+      ),
+      body: AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: isLocked
+                ? [Colors.red.shade100, Colors.grey.shade100]
+                : [Colors.green.shade100, Colors.grey.shade100],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                isLocked ? Icons.lock : Icons.lock_open,
+                size: 120,
+                color: isLocked ? Colors.red : Colors.green,
+              ),
+
+              const SizedBox(height: 50),
+
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isLocked = !isLocked;
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40, vertical: 15),
+                  decoration: BoxDecoration(
+                    color: isLocked ? Colors.red : Colors.green,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Text(
+                    isLocked ? "TAP TO UNLOCK" : "TAP TO LOCK",
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+8. Click "Run"
+
+Output:
+A Smart Lock app will be displayed. On tapping button, lock icon changes between locked and unlocked state. 
+
+Conclusion:
+In this experiment, GestureDetector is used to detect tap events and update UI. 

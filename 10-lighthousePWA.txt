@@ -1,0 +1,81 @@
+Experiment No: 10
+Title: Google Lighthouse PWA Analysis
+
+Aim:
+To test the performance and PWA functionality of a website using Google Lighthouse tool.
+
+Requirements:
+
+* Google Chrome Browser
+
+---
+
+### Step 1: Open Website
+
+Open Google Chrome
+
+Open any website (example):
+
+https://www.amazon.in
+
+---
+
+### Step 2: Open Developer Tools
+
+Press:
+
+Ctrl + Shift + I
+
+---
+
+### Step 3: Open Lighthouse
+
+Click on:
+👉 Lighthouse tab
+
+(If not visible → click ">>" and select Lighthouse)
+
+---
+
+### Step 4: Configure Audit
+
+Select all categories:
+
+* Performance ✔
+* Accessibility ✔
+* Best Practices ✔
+* SEO ✔
+* PWA ✔
+
+---
+
+### Step 5: Run Audit
+
+Click:
+👉 "Analyze page load" / "Run audit"
+
+Wait for 30–60 seconds
+
+---
+
+### Step 6: View Report
+
+Lighthouse will generate a report showing scores such as:
+
+* Performance Score
+* Accessibility Score
+* Best Practices
+* SEO
+* PWA
+
+---
+
+### Output:
+
+A Lighthouse report is generated displaying performance, accessibility, SEO, and PWA analysis of the website.
+
+---
+
+### Conclusion:
+
+Google Lighthouse tool is successfully used to analyze and test the website performance and PWA functionality.

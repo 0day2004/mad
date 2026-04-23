@@ -1,0 +1,172 @@
+Experiment No: 7
+Title: Firebase Authentication using Flutter
+
+Aim:
+To implement Firebase connectivity for Email-Password authentication. 
+
+Requirements:
+
+* FlutLab account
+* Firebase account (Google)
+
+---
+
+### Steps:
+
+### 🔹 Part A: Firebase Setup
+
+1. Go to https://console.firebase.google.com
+
+2. Click on **Create Project**
+
+3. Enter project name (e.g., flutter_auth_app)
+
+4. Click **Continue → Create Project**
+
+5. After project creation, click **Add App (Android icon)**
+
+6. Enter package name (e.g., com.example.app)
+
+7. Click **Register App**
+
+8. Download **google-services.json**
+
+---
+
+### 🔹 Part B: Enable Authentication
+
+9. In Firebase Console → Go to **Authentication**
+10. Click **Get Started**
+11. Go to **Sign-in method**
+12. Enable **Email/Password**
+13. Click **Save**
+
+---
+
+### 🔹 Part C: FlutLab Setup
+
+14. Open https://flutlab.io
+
+15. Create New Project
+
+16. Go to **pubspec.yaml**
+
+17. Add dependencies:
+
+```yaml
+firebase_core: ^latest
+firebase_auth: ^latest
+```
+
+18. Click **Get Packages**
+
+---
+
+### 🔹 Part D: Connect Firebase
+
+19. In FlutLab → Open **Android folder**
+20. Upload downloaded **google-services.json** file into:
+
+```
+android/app/
+```
+
+21. Ensure internet permission is enabled (default hota hai)
+
+---
+
+### 🔹 Part E: Write Code
+
+22. Open **lib/main.dart**
+23. Delete existing code
+24. Paste Firebase login code
+
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginPage(),
+    );
+  }
+}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final email = TextEditingController();
+  final pass = TextEditingController();
+
+  Future<void> login() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email.text,
+      password: pass.text,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Login")),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(controller: email, decoration: const InputDecoration(labelText: "Email")),
+            TextField(controller: pass, obscureText: true, decoration: const InputDecoration(labelText: "Password")),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: login,
+              child: const Text("Login"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+---
+
+### 🔹 Part F: Run App
+
+25. Click **Run**
+26. App will open with login screen
+
+---
+
+### 🔹 Part G: Testing
+
+27. Go to Firebase → Authentication → Users
+
+28. Click **Add User**
+
+29. Enter Email & Password
+
+30. Use same credentials in app → Click Login
+
+---
+
+### Output:
+
+Login screen will be displayed and user can login using Firebase credentials. 
+
+Conclusion:
+Firebase authentication is successfully implemented in Flutter application. 
